@@ -14,7 +14,9 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "target": "es6",
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "types": ["jasmine", "node", "chrome"],
+    "typeRoots": ["node_modules/@types"],
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"],

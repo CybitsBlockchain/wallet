@@ -5,7 +5,8 @@
     "baseUrl": "./",
     "module": "commonjs",
     "target": "es6",
-    "types": ["jasmine", "node", "chrome"]
+    "types": ["jasmine", "node", "chrome"],
+    "typeRoots": ["../node_modules/@types"],
   },
   "files": ["test.ts", "polyfills.ts"],
   "include": ["**/*.spec.ts", "**/*.d.ts"]

@@ -1,0 +1,9 @@
+app:
+  build: .
+  ports:
+    - '8100:8100'
+    - '35729:35729'
+  volumes:
+    - .:/src
+    - /src/node_modules
+  command: ionic serve --lab
