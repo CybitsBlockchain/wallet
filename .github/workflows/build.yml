@@ -19,7 +19,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 10.16.2
-
+          
+      - name: NPM Install Packages
+        run: npm install
+        
       - name: Apply:bitpay
         run: npm run apply:bitpay
 
