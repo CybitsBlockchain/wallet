@@ -18,38 +18,34 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 11.x
+          node-version: 10.16.2
 
-      - name: Install Cordova
-        run: npm install -g cordova
+      - name: Apply:bitpay
+        run: npm run apply:bitpay
 
-      - name: Install Ionic
-        run: npm install -g @ionic/cli
+      - name: Test:Lint
+        run: npm run test:lint
 
-      - name: Install app dependencies
-        run: npm install
+      - name: Test:Ci
+        run: npm run test:ci
 
-      - name: Add Android platform
-        run: ionic cordova platform add android@latest
+      - name: CodeCov
+        run: npx codecov
 
-      - name: Build Android Dev APK
-        run: ionic cordova build android
+      - name: Prepare:BitPay
+        run: npm run prepare:bitpay
 
-      - name: Build Android Release APK
-        run: ionic cordova build android --release --prod
+      - name: Final:Android
+        run: npm run final:android
 
-      - name: Generate the Android App Bundle
-        working-directory: ./platforms/android/
-        run: ./gradlew bundle
+#      - name: Upload dev APK
+#        uses: actions/upload-artifact@v1
+#        with:
+#          name: app-dev
+#          path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
 
-      - name: Upload dev APK
-        uses: actions/upload-artifact@v1
-        with:
-          name: app-dev
-          path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
-
-      - name: Upload release bundle
-        uses: actions/upload-artifact@v1
-        with:
-          name: app-release
-          path: platforms/android/app/build/outputs/bundle/release/app.aab
+#      - name: Upload release bundle
+#        uses: actions/upload-artifact@v1
+#        with:
+#          name: app-release
+#          path: platforms/android/app/build/outputs/bundle/release/app.aab
