@@ -1,5 +1,6 @@
 allprojects {
     repositories {
+        google()
         mavenCentral()
         jcenter()
         maven { url "file://*GOOGLEPAY_DIR*" }
