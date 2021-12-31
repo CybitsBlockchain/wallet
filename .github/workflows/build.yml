@@ -26,14 +26,14 @@ jobs:
       - name: Apply:bitpay
         run: npm run apply:bitpay
 
-      - name: Test:Lint
-        run: npm run test:lint
+#      - name: Test:Lint
+#        run: npm run test:lint
 
-      - name: Test:Ci
-        run: npm run test:ci
+#      - name: Test:Ci
+#       run: npm run test:ci
 
-      - name: CodeCov
-        run: npx codecov
+#      - name: CodeCov
+#        run: npx codecov
         
       - name: Decode google-services.json
         env:
