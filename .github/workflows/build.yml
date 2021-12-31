@@ -34,6 +34,11 @@ jobs:
 
       - name: CodeCov
         run: npx codecov
+        
+      - name: Decode google-services.json
+        env:
+          FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET }}
+        run: echo $FIREBASE_SECRET > YOUR_PROJECT_FOLDER/app/google-services.json
 
       - name: Prepare:BitPay
         run: npm run prepare:bitpay
