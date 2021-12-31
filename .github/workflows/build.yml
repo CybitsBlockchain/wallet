@@ -1,0 +1,59 @@
+name: Build Android
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Setup java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.16.2
+          
+      - name: NPM Install Packages
+        run: npm install
+        
+      - name: Apply:bitpay
+        run: npm run apply:bitpay
+
+      - name: Test:Lint
+        run: npm run test:lint
+
+      - name: Test:Ci
+        run: npm run test:ci
+
+      - name: CodeCov
+        run: npx codecov
+        
+      - name: Decode google-services.json
+        env:
+          FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET }}
+        run: echo $FIREBASE_SECRET > google-services.json
+
+      - name: Prepare:BitPay
+        run: npm run prepare:bitpay
+
+      - name: Final:Android
+        run: npm run final:android
+
+#      - name: Upload dev APK
+#        uses: actions/upload-artifact@v1
+#        with:
+#          name: app-dev
+#          path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+
+#      - name: Upload release bundle
+#        uses: actions/upload-artifact@v1
+#        with:
+#          name: app-release
+#          path: platforms/android/app/build/outputs/bundle/release/app.aab
